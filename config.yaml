@@ -1,0 +1,36 @@
+app:
+  name: "My Application"
+  mode: "development"
+  port: 8081
+  version: "1.0.0"
+  description: "My Application"
+
+log:
+  level: "debug"
+  file: "log/application.log"
+  max_size: 200
+  max_age: 30
+  max_backups: 7
+
+mysql:
+  host: "101.43.99.4"
+  port: 3306
+  username: "root"
+  password: "123456"
+  database: "test"
+  max_connections: 10
+  max_idle_connections: 10
+
+redis:
+  host: "localhost"
+  port: 6379
+  password: ""
+  database: 0
+  max_connections: 10
+  max_idle_connections: 10
+
+
+
+
+
+
