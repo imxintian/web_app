@@ -4,7 +4,7 @@ package redis
 import (
 	"fmt"
 	"github.com/go-redis/redis"
-	"github.com/spf13/viper"
+	"web_app/settings"
 )
 
 // 声明一个全局的redis 变量
@@ -12,12 +12,12 @@ var rdb *redis.Client
 
 // 初始化redis
 
-func Init() (err error) {
+func Init(cfg *settings.RedisConfig) (err error) {
 	rdb = redis.NewClient(&redis.Options{
-		Addr:     fmt.Sprintf("%s:%d", viper.GetString("redis.host"), viper.GetInt("redis.port")),
-		Password: viper.GetString("redis.password"),
-		DB:       viper.GetInt("redis.db"),
-		PoolSize: viper.GetInt("redis.poolsize"),
+		Addr:     fmt.Sprintf("%s:%d", cfg.Host, cfg.Port),
+		Password: cfg.Password,
+		DB:       cfg.Database,
+		PoolSize: cfg.PoolSize,
 	})
 	// 初始化redis
 

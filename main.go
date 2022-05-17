@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"log"
 	"net/http"
@@ -28,7 +27,7 @@ func main() {
 	}
 
 	// 2. 初始化日志
-	if err := logger.Init(); err != nil {
+	if err := logger.Init(settings.Conf.LogConfig); err != nil {
 		fmt.Println("初始化数日志失败", err)
 		return
 	}
@@ -36,14 +35,14 @@ func main() {
 	zap.L().Info("init logger success")
 
 	// 3. 初始化数据库
-	if err := mysql.Init(); err != nil {
+	if err := mysql.Init(settings.Conf.MysqlConfig); err != nil {
 		fmt.Println("初始化mysql失败", err)
 		return
 	}
 	defer mysql.Close()
 
 	// 4. 初始化redis
-	if err := redis.Init(); err != nil {
+	if err := redis.Init(settings.Conf.RedisConfig); err != nil {
 		fmt.Println("初始化redis失败", err)
 		return
 	}
@@ -53,7 +52,7 @@ func main() {
 
 	// 5. 启动服务
 	srv := &http.Server{
-		Addr:    fmt.Sprintf(":%d", viper.GetInt("app.port")),
+		Addr:    fmt.Sprintf(":%d", settings.Conf.ServerConfig.Port),
 		Handler: r,
 	}
 

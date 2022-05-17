@@ -9,9 +9,7 @@ func SetUp() *gin.Engine {
 	r := gin.New()
 	r.Use(logger.GinLogger(), logger.GinRecovery(true))
 	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
+		c.String(200, "Hello World")
 	})
 	return r
 }
