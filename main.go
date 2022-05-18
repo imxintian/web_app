@@ -21,7 +21,12 @@ import (
 
 func main() {
 	// 1. 加载配置
-	if err := settings.Init(); err != nil {
+
+	if len(os.Args) < 2 {
+		fmt.Println("请输入配置文件名称")
+		return
+	}
+	if err := settings.Init(os.Args[1]); err != nil {
 		fmt.Println("加载配置失败", err)
 		return
 	}
@@ -32,6 +37,7 @@ func main() {
 		return
 	}
 	defer zap.L().Sync()
+
 	zap.L().Info("init logger success")
 
 	// 3. 初始化数据库
