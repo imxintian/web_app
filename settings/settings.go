@@ -21,6 +21,8 @@ type ServerConfig struct {
 	Port        int    `mapstructure:"port"`
 	Version     string `mapstructure:"version"`
 	Description string `mapstructure:"description"`
+	StartTime   string `mapstructure:"start_time"`
+	MachineID   int64  `mapstructure:"machine_id"`
 }
 
 type LogConfig struct {

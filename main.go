@@ -13,6 +13,7 @@ import (
 	"web_app/dao/mysql"
 	"web_app/dao/redis"
 	"web_app/logger"
+	"web_app/pkg/snowflake"
 	"web_app/routes"
 	"web_app/settings"
 )
@@ -53,6 +54,10 @@ func main() {
 		return
 	}
 	defer redis.Close()
+	if err := snowflake.Init(settings.Conf.ServerConfig.StartTime, settings.Conf.ServerConfig.MachineID); err != nil {
+		fmt.Println("初始化sf失败", err)
+		return
+	}
 	// 4. 初始化路由
 	r := routes.SetUp()
 
