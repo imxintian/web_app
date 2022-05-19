@@ -6,8 +6,8 @@ app:
   description: "My Application"
 
 log:
-  level: "debug"
-  file: "log/application.log"
+  level: "info"
+  filename: "log/application.log"
   max_size: 200
   max_age: 30
   max_backups: 7
@@ -28,6 +28,7 @@ redis:
   database: 0
   max_connections: 10
   max_idle_connections: 10
+  pool_size: 100
 
 
 

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/go-redis/redis"
 	"github.com/spf13/viper"
+	"go.uber.org/zap"
 )
 
 // 声明一个全局的redis 变量
@@ -25,6 +26,7 @@ func Init() (err error) {
 	if err != nil {
 		return
 	}
+	zap.L().Info("redis init success")
 	return
 }
 

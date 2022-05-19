@@ -13,7 +13,7 @@ func Init() (err error) {
 	err = viper.ReadInConfig()
 	if err != nil {
 		// Handle errors reading the config file
-		fmt.Printf("Fatal error config file: %s \n\n", err)
+		fmt.Printf("viper.ReadInConfig faild,err: %s \n\n", err)
 		return err
 	}
 	viper.WatchConfig()

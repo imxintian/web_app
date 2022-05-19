@@ -33,11 +33,13 @@ func main() {
 		return
 	}
 	defer zap.L().Sync()
-	zap.L().Info("init logger success")
+	zap.L().Debug("init logger success")
+	
 
 	// 3. 初始化数据库
 	if err := mysql.Init(); err != nil {
 		fmt.Println("初始化mysql失败", err)
+		zap.L().Error("init mysql failed", zap.Error(err))
 		return
 	}
 	defer mysql.Close()

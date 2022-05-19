@@ -5,6 +5,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 	"github.com/spf13/viper"
+	"go.uber.org/zap"
 )
 
 //初始化数据库
@@ -21,7 +22,7 @@ func Init() (err error) {
 
 	db, err = sqlx.Connect("mysql", dsn)
 	if err != nil {
-		fmt.Printf("数据库连接失败，err:%v\n", err)
+		zap.L().Error("mysql connect error", zap.Error(err))
 		return
 	}
 	db.SetMaxOpenConns(viper.GetInt("mysql.max_connections"))
