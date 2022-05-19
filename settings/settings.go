@@ -27,7 +27,7 @@ type ServerConfig struct {
 
 type LogConfig struct {
 	Level      string `mapstructure:"level"`
-	FileName   string `mapstructure:"file_name"`
+	FileName   string `mapstructure:"filename"`
 	MaxSize    int    `mapstructure:"max_size"`
 	MaxAge     int    `mapstructure:"max_age"`
 	MaxBackups int    `mapstructure:"max_backups"`
@@ -53,9 +53,9 @@ type RedisConfig struct {
 	PoolSize           int    `mapstructure:"pool_size"`
 }
 
-func Init(filename string) (err error) {
+func Init() (err error) {
 	// 方式1 通过用户指定配置文件
-	viper.SetConfigName(filename)
+	//viper.SetConfigName(filename)
 	// 方式2 指定配置文件名和配置文件的位置,viper 自行查找可用配置文件
 	//viper.SetConfigFile("config.yaml")
 	viper.SetConfigName("config") // name of config file (without extension)

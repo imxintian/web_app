@@ -2,14 +2,14 @@ app:
   name: "My Application"
   mode: "development"
   port: 8081
-  version: "1.0.1"
+  version: "1.0.0"
   description: "My Application"
   start_time: "2015-01-01 00:00:00"
   machine_id: 1
 
 log:
   level: "debug"
-  file: "log/application.log"
+  filename: "log/application.log"
   max_size: 200
   max_age: 30
   max_backups: 7
