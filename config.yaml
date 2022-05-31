@@ -1,6 +1,6 @@
 app:
   name: "My Application"
-  mode: "development"
+  mode: "dev"
   port: 8081
   version: "1.0.0"
   description: "My Application"

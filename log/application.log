@@ -38,3 +38,16 @@
 {"level":"INFO","time":"2022-05-31T14:47:25.771+0800","caller":"web_app/main.go:38","msg":"init logger success"}
 {"level":"INFO","time":"2022-05-31T14:47:40.859+0800","caller":"logger/logger.go:71","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.28.4","errors":"","cost":0.222722148}
 {"level":"INFO","time":"2022-05-31T14:48:48.405+0800","caller":"logger/logger.go:71","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.28.4","errors":"","cost":0.164834173}
+{"level":"INFO","time":"2022-05-31T15:17:06.170+0800","caller":"web_app/main.go:87","msg":"Shutdown Server ..."}
+{"level":"INFO","time":"2022-05-31T15:17:06.173+0800","caller":"web_app/main.go:96","msg":"Server exiting"}
+{"level":"INFO","time":"2022-05-31T15:19:01.538+0800","caller":"web_app/main.go:38","msg":"init logger success"}
+{"level":"INFO","time":"2022-05-31T15:19:13.596+0800","caller":"logger/logger.go:80","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.28.4","errors":"","cost":0.04337678}
+{"level":"INFO","time":"2022-05-31T15:20:01.322+0800","caller":"logger/logger.go:80","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.28.4","errors":"","cost":0.10354359}
+{"level":"INFO","time":"2022-05-31T15:21:08.708+0800","caller":"logger/logger.go:80","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.28.4","errors":"","cost":0.038689853}
+{"level":"ERROR","time":"2022-05-31T15:23:06.349+0800","caller":"controller/user.go:18","msg":"SignUp with invalid param","error":"Key: 'ParamSignUp.re_password' Error:Field validation for 're_password' failed on the 'eqfield' tag\nKey: 'ParamSignUp.re_password' Error:Field validation for 're_password' failed on the 'eqfield' tag"}
+{"level":"INFO","time":"2022-05-31T15:23:06.349+0800","caller":"logger/logger.go:80","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.28.4","errors":"","cost":0.000169273}
+{"level":"ERROR","time":"2022-05-31T15:23:30.913+0800","caller":"controller/user.go:18","msg":"SignUp with invalid param","error":"Key: 'ParamSignUp.re_password' Error:Field validation for 're_password' failed on the 'eqfield' tag\nKey: 'ParamSignUp.re_password' Error:Field validation for 're_password' failed on the 'eqfield' tag"}
+{"level":"INFO","time":"2022-05-31T15:23:30.914+0800","caller":"logger/logger.go:80","msg":"/signup","status":200,"method":"POST","path":"/signup","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.28.4","errors":"","cost":0.000191635}
+{"level":"INFO","time":"2022-05-31T15:23:36.435+0800","caller":"web_app/main.go:87","msg":"Shutdown Server ..."}
+{"level":"INFO","time":"2022-05-31T15:23:36.437+0800","caller":"web_app/main.go:96","msg":"Server exiting"}
+{"level":"INFO","time":"2022-05-31T15:23:56.408+0800","caller":"web_app/main.go:38","msg":"init logger success"}
