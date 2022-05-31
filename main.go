@@ -10,6 +10,7 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
+	"web_app/controller"
 	"web_app/dao/mysql"
 	"web_app/dao/redis"
 	"web_app/logger"
@@ -51,6 +52,12 @@ func main() {
 	defer redis.Close()
 	if err := snowflake.Init(settings.Conf.ServerConfig.StartTime, settings.Conf.ServerConfig.MachineID); err != nil {
 		fmt.Println("初始化sf失败", err)
+		return
+	}
+	// 初始化 gin 框架内置校验器使用的翻译器
+	if err := controller.InitTrans("zh"); err != nil {
+		zap.L().Error("初始化翻译器失败", zap.Error(err))
+		fmt.Println("初始化gin框架内置校验器使用的翻译器失败", err)
 		return
 	}
 	// 4. 初始化路由

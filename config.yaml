@@ -19,7 +19,7 @@ mysql:
   port: 3306
   username: "root"
   password: "123456"
-  database: "test"
+  database: "go_web"
   max_connections: 10
   max_idle_connections: 10
 
