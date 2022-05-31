@@ -6,7 +6,10 @@ import (
 	"web_app/logger"
 )
 
-func SetUp() *gin.Engine {
+func SetUp(mode string) *gin.Engine {
+	if mode == gin.ReleaseMode {
+		gin.SetMode(gin.ReleaseMode)
+	}
 	r := gin.New()
 	r.Use(logger.GinLogger(), logger.GinRecovery(true))
 	// 注册业务路由

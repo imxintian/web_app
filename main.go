@@ -61,7 +61,7 @@ func main() {
 		return
 	}
 	// 4. 初始化路由
-	r := routes.SetUp()
+	r := routes.SetUp(settings.Conf.ServerConfig.Mode)
 
 	// 5. 启动服务
 	srv := &http.Server{
