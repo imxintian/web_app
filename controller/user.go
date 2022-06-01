@@ -48,3 +48,44 @@ func SignUpHandler(c *gin.Context) {
 	})
 
 }
+
+func LoginHandler(c *gin.Context) {
+	// 参数校验
+	p := new(models.ParamLogin)
+	// shouldBindJSON() 可以接收任何类型的数据，绑定到结构体中
+	if err := c.ShouldBindJSON(p); err != nil {
+		zap.L().Error("Login with invalid param", zap.Error(err))
+		// 判断err是否是validator.ValidationErrors类型
+		errs, ok := err.(validator.ValidationErrors)
+		if !ok {
+			c.JSON(http.StatusOK, gin.H{
+				"msg": errs.Error(),
+			})
+			return
+		}
+
+		c.JSON(200, gin.H{
+			"code": -1,
+			"msg":  removeTopStruct(errs.Translate(trans)),
+		})
+		return
+	}
+	// 业务处理
+	if err := logic.Login(p); err != nil {
+		zap.L().Error("logic.login failed", zap.String("username", p.Username), zap.Error(err))
+		c.JSON(
+			http.StatusOK, gin.H{
+				"code": -1,
+				"msg":  "用户名密码失败",
+			})
+		return
+
+	}
+
+	// 返回响应
+	c.JSON(200, gin.H{
+		"code": 0,
+		"msg":  "登录成功",
+	})
+
+}

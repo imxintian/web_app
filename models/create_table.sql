@@ -18,3 +18,4 @@ CREATE TABLE `user` (
 
 
 
+select * from user;

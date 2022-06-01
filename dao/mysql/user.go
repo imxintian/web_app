@@ -2,8 +2,10 @@ package mysql
 
 import (
 	"crypto/md5"
+	"database/sql"
 	"encoding/hex"
 	"errors"
+	"go.uber.org/zap"
 	"web_app/models"
 )
 
@@ -37,6 +39,25 @@ func CheckUserExist(username string) (err error) {
 	}
 	if count > 0 {
 		return errors.New("用户已存在")
+	}
+	return nil
+}
+
+func Login(user *models.User) (err error) {
+	oPassword := user.Password
+	sqlStr := "select  user_id,username,password from  user where username = ?"
+	err = db.Get(user, sqlStr, user.Username)
+	if err == sql.ErrNoRows {
+		return errors.New("用户不存在")
+	}
+	if err != nil {
+		zap.L().Error("查询用户失败", zap.Error(err))
+		return nil
+	}
+	// 检查密码是否正确
+	password := encodePassword(oPassword)
+	if password != user.Password {
+		return errors.New("密码错误")
 	}
 	return nil
 }
