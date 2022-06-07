@@ -11,6 +11,12 @@ import (
 
 const secret = "wxt"
 
+var (
+	ErrUserNotFound      = errors.New("user not found")
+	ErrPasswordIncorrect = errors.New("password incorrect")
+	ErrUserExist         = errors.New("user exist")
+)
+
 func QueryUserByUserName() {
 }
 
@@ -38,7 +44,7 @@ func CheckUserExist(username string) (err error) {
 		return err
 	}
 	if count > 0 {
-		return errors.New("用户已存在")
+		return ErrUserExist
 	}
 	return nil
 }
@@ -48,7 +54,7 @@ func Login(user *models.User) (err error) {
 	sqlStr := "select  user_id,username,password from  user where username = ?"
 	err = db.Get(user, sqlStr, user.Username)
 	if err == sql.ErrNoRows {
-		return errors.New("用户不存在")
+		return ErrUserNotFound
 	}
 	if err != nil {
 		zap.L().Error("查询用户失败", zap.Error(err))
@@ -57,7 +63,7 @@ func Login(user *models.User) (err error) {
 	// 检查密码是否正确
 	password := encodePassword(oPassword)
 	if password != user.Password {
-		return errors.New("密码错误")
+		return ErrPasswordIncorrect
 	}
 	return nil
 }
