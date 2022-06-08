@@ -132,3 +132,6 @@
 {"level":"INFO","time":"2022-06-08T16:02:29.533+0800","caller":"logger/logger.go:80","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.28.4","errors":"","cost":0.259716493}
 {"level":"INFO","time":"2022-06-08T16:03:08.125+0800","caller":"web_app/main.go:87","msg":"Shutdown Server ..."}
 {"level":"INFO","time":"2022-06-08T16:03:08.127+0800","caller":"web_app/main.go:96","msg":"Server exiting"}
+{"level":"INFO","time":"2022-06-08T16:37:57.853+0800","caller":"web_app/main.go:38","msg":"init logger success"}
+{"level":"INFO","time":"2022-06-08T16:38:37.272+0800","caller":"web_app/main.go:38","msg":"init logger success"}
+{"level":"INFO","time":"2022-06-08T16:38:49.415+0800","caller":"web_app/main.go:38","msg":"init logger success"}
