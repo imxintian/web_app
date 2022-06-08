@@ -119,3 +119,16 @@
 {"level":"INFO","time":"2022-06-07T18:11:59.534+0800","caller":"logger/logger.go:80","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.28.4","errors":"","cost":50.294996623}
 {"level":"INFO","time":"2022-06-08T14:13:47.868+0800","caller":"web_app/main.go:38","msg":"init logger success"}
 {"level":"INFO","time":"2022-06-08T14:13:58.757+0800","caller":"logger/logger.go:80","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.28.4","errors":"","cost":0.195605478}
+{"level":"INFO","time":"2022-06-08T15:57:55.686+0800","caller":"web_app/main.go:38","msg":"init logger success"}
+{"level":"INFO","time":"2022-06-08T15:58:08.498+0800","caller":"web_app/main.go:87","msg":"Shutdown Server ..."}
+{"level":"INFO","time":"2022-06-08T15:58:08.500+0800","caller":"web_app/main.go:96","msg":"Server exiting"}
+{"level":"INFO","time":"2022-06-08T15:58:25.780+0800","caller":"web_app/main.go:38","msg":"init logger success"}
+{"level":"INFO","time":"2022-06-08T15:58:29.346+0800","caller":"web_app/main.go:87","msg":"Shutdown Server ..."}
+{"level":"INFO","time":"2022-06-08T15:58:29.348+0800","caller":"web_app/main.go:96","msg":"Server exiting"}
+{"level":"INFO","time":"2022-06-08T15:59:43.327+0800","caller":"web_app/main.go:38","msg":"init logger success"}
+{"level":"INFO","time":"2022-06-08T15:59:45.765+0800","caller":"web_app/main.go:87","msg":"Shutdown Server ..."}
+{"level":"INFO","time":"2022-06-08T15:59:45.767+0800","caller":"web_app/main.go:96","msg":"Server exiting"}
+{"level":"INFO","time":"2022-06-08T16:02:19.520+0800","caller":"web_app/main.go:38","msg":"init logger success"}
+{"level":"INFO","time":"2022-06-08T16:02:29.533+0800","caller":"logger/logger.go:80","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.28.4","errors":"","cost":0.259716493}
+{"level":"INFO","time":"2022-06-08T16:03:08.125+0800","caller":"web_app/main.go:87","msg":"Shutdown Server ..."}
+{"level":"INFO","time":"2022-06-08T16:03:08.127+0800","caller":"web_app/main.go:96","msg":"Server exiting"}
