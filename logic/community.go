@@ -15,3 +15,12 @@ func GetCommunityList() ([]*models.Community, error) {
 	}
 	return communityList, nil
 }
+
+func GetCommunityDetail(id int64) (*models.CommunityDetail, error) {
+	communityDetail, err := mysql.GetCommunityDetail(id)
+	if err != nil {
+		zap.L().Error("getCommunityDetail error", zap.Error(err))
+		return nil, err
+	}
+	return communityDetail, nil
+}

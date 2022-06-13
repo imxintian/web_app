@@ -12,7 +12,7 @@ var db *sqlx.DB
 
 func Init(cfg *settings.MysqlConfig) (err error) {
 	//读取配置文件
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8",
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true&loc=Local",
 		cfg.Username,
 		cfg.Password,
 		cfg.Host,

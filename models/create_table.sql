@@ -39,3 +39,5 @@ insert into community (community_id, community_name, introduction) values (3, 'p
 insert into community (community_id, community_name, introduction) values (4, 'java', 'java');
 
 select * from community;
+
+select community_id,community_name,introduction,create_time from community where community_id = 1;

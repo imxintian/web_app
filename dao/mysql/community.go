@@ -7,8 +7,8 @@ import (
 )
 
 func GetCommunityList() (communityList []*models.Community, err error) {
-	salStr := "select community_id,community_name from community"
-	if err := db.Select(&communityList, salStr); err != nil {
+	sqlStr := "select community_id,community_name from community"
+	if err := db.Select(&communityList, sqlStr); err != nil {
 		if err == sql.ErrNoRows {
 			zap.L().Warn("there is no community in database")
 			err = nil
@@ -17,4 +17,17 @@ func GetCommunityList() (communityList []*models.Community, err error) {
 	}
 
 	return
+}
+
+// GetCommunityDetail 根据id获取社区详情
+func GetCommunityDetail(id int64) (community *models.CommunityDetail, err error) {
+	community = new(models.CommunityDetail)
+	sqlStr := "select community_id,community_name,introduction,create_time from community where community_id = ?"
+	if err := db.Get(community, sqlStr, id); err != nil {
+		if err == sql.ErrNoRows {
+			zap.L().Warn("there is invalid id in database")
+			err = nil
+		}
+	}
+	return community, err
 }
