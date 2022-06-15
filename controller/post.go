@@ -3,6 +3,7 @@ package controller
 import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
+	"strconv"
 	"web_app/logic"
 	"web_app/models"
 )
@@ -38,4 +39,23 @@ func CreatePostHandler(c *gin.Context) {
 	// 返回结果
 	ResponseSuccess(c, nil)
 
+}
+
+// GetPostDetailHandler  获取帖子详情
+func GetPostDetailHandler(c *gin.Context) {
+	// 获取参数及参数校验
+	pidStr := c.Param("id")
+	pid, err := strconv.ParseInt(pidStr, 10, 64)
+	if err != nil {
+		zap.L().Debug("parse communityID error", zap.Error(err))
+		zap.L().Error("getPostList with invalid param", zap.Error(err))
+		return
+	}
+	// 查询post列表
+	data, err := logic.GetPostById(pid)
+	if err != nil {
+		zap.L().Error("getPostList error", zap.Error(err))
+		ResponseError(c, CodeServerBusy)
+	}
+	ResponseSuccess(c, data)
 }

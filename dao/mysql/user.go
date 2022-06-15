@@ -67,3 +67,17 @@ func Login(user *models.User) (err error) {
 	}
 	return nil
 }
+
+//GetUserById 查询用户信息
+func GetUserById(id int64) (*models.User, error) {
+	sqlStr := "select user_id,username,password from user where user_id = ?"
+	user := &models.User{}
+	err := db.Get(user, sqlStr, id)
+	if err == sql.ErrNoRows {
+		return nil, ErrUserNotFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
+}

@@ -24,3 +24,13 @@ func GetCommunityDetail(id int64) (*models.CommunityDetail, error) {
 	}
 	return communityDetail, nil
 }
+
+// GetCommunityById 获取社区详情
+func GetCommunityById(id int64) (*models.Community, error) {
+	community, err := mysql.GetCommunityById(id)
+	if err != nil {
+		zap.L().Error("getCommunityById error", zap.Error(err))
+		return nil, err
+	}
+	return community, nil
+}

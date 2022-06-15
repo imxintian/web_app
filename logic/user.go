@@ -39,3 +39,12 @@ func Login(p *models.ParamLogin) (token string, err error) {
 	return jwt.GenToken(user.UserId, user.Username)
 
 }
+
+// GetUserById 获取用户信息
+func GetUserById(id int64) (*models.User, error) {
+	user, err := mysql.GetUserById(id)
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
+}

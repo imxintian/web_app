@@ -31,3 +31,16 @@ func GetCommunityDetail(id int64) (community *models.CommunityDetail, err error)
 	}
 	return community, err
 }
+
+// GetCommunityById 获取社区详情
+func GetCommunityById(id int64) (community *models.Community, err error) {
+	community = new(models.Community)
+	sqlStr := "select community_id,community_name,introduction,create_time from community where community_id = ?"
+	if err := db.Get(community, sqlStr, id); err != nil {
+		if err == sql.ErrNoRows {
+			zap.L().Warn("there is invalid id in database")
+			err = nil
+		}
+	}
+	return community, err
+}
