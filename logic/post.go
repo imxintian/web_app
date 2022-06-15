@@ -36,9 +36,9 @@ func GetPostById(id int64) (*models.APiPostDetail, error) {
 	}
 	// 组合数据接口
 	postDetail := &models.APiPostDetail{
-		AuthorName: user.Username,
-		Post:       post,
-		Community:  community,
+		AuthorName:      user.Username,
+		Post:            post,
+		CommunityDetail: community,
 	}
 
 	return postDetail, nil

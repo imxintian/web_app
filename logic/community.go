@@ -26,7 +26,7 @@ func GetCommunityDetail(id int64) (*models.CommunityDetail, error) {
 }
 
 // GetCommunityById 获取社区详情
-func GetCommunityById(id int64) (*models.Community, error) {
+func GetCommunityById(id int64) (*models.CommunityDetail, error) {
 	community, err := mysql.GetCommunityById(id)
 	if err != nil {
 		zap.L().Error("getCommunityById error", zap.Error(err))

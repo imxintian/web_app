@@ -58,3 +58,5 @@ create table post (
                            key idx_community_id (community_id)
 ) engine=innodb default charset=utf8mb4 collate=utf8mb4_general_ci;
 
+select community_id,community_name,introduction,create_time from community where community_id = 1;
+
