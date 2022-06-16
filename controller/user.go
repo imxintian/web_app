@@ -61,7 +61,7 @@ func LoginHandler(c *gin.Context) {
 		return
 	}
 	// 业务处理
-	token, err := logic.Login(p)
+	user, err := logic.Login(p)
 	if err != nil {
 		zap.L().Error("logic.login failed", zap.String("username", p.Username), zap.Error(err))
 		if errors.Is(err, mysql.ErrPasswordIncorrect) {
@@ -74,6 +74,11 @@ func LoginHandler(c *gin.Context) {
 	}
 
 	// 返回响应
-	ResponseSuccess(c, token)
+	ResponseSuccess(c, gin.H{
+
+		"user_id":   fmt.Sprintf("%d", user.UserId), //id值大于2^53-1的情况下，会被转换成字符串,int64类型的id值2^63-1
+		"user_name": user.Username,
+		"token":     user.Token,
+	})
 
 }
