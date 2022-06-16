@@ -38,10 +38,10 @@ func GetPostById(id int64) (*models.Post, error) {
 }
 
 // GetPostList 查询帖子列表
-func GetPostList() ([]*models.Post, error) {
+func GetPostList(page, pageSize int) ([]*models.Post, error) {
 	sqlStr := "select post_id, title, content, author_id, community_id," +
 		"`status`, create_time from post   limit ?, ?"
-	rows, err := db.Query(sqlStr, 0, 2)
+	rows, err := db.Query(sqlStr, (page-1)*pageSize, pageSize)
 	if err != nil {
 		return nil, err
 	}

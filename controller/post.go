@@ -62,9 +62,10 @@ func GetPostDetailHandler(c *gin.Context) {
 
 // GetPostListHandler 获取帖子列表
 func GetPostListHandler(c *gin.Context) {
-
+	// 获取参数及参数校验
+	page, pageSize := getPageInfo(c)
 	// 查询post列表
-	data, err := logic.GetPostList()
+	data, err := logic.GetPostList(page, pageSize)
 	if err != nil {
 		zap.L().Error("getPostList error", zap.Error(err))
 		ResponseError(c, CodeServerBusy)

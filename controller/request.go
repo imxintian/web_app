@@ -3,6 +3,7 @@ package controller
 import (
 	"errors"
 	"github.com/gin-gonic/gin"
+	"strconv"
 )
 
 var ErrorUserNotLogin = errors.New("user not login")
@@ -21,4 +22,20 @@ func getCurrentUserId(c *gin.Context) (userID int64, err error) {
 		err = ErrorUserNotLogin
 	}
 	return
+}
+
+// getPageInfo 获取分页信息
+func getPageInfo(c *gin.Context) (page, pageSize int) {
+	pageStr := c.Query("page")
+	pageSizeStr := c.Query("page_size")
+	page, _ = strconv.Atoi(pageStr)
+	pageSize, _ = strconv.Atoi(pageSizeStr)
+	if page <= 0 {
+		page = 1
+	}
+	if pageSize <= 0 {
+		pageSize = 3
+	}
+	return
+
 }

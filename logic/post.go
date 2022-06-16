@@ -46,9 +46,9 @@ func GetPostById(id int64) (*models.APiPostDetail, error) {
 }
 
 // GetPostList 获取帖子列表
-func GetPostList() ([]*models.APiPostDetail, error) {
+func GetPostList(page, pageSize int) ([]*models.APiPostDetail, error) {
 	// 查询帖子列表
-	postList, err := mysql.GetPostList()
+	postList, err := mysql.GetPostList(page, pageSize)
 	if err != nil {
 		zap.L().Error("getPostList error", zap.Error(err))
 		return nil, err
