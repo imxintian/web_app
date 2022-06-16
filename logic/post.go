@@ -44,3 +44,37 @@ func GetPostById(id int64) (*models.APiPostDetail, error) {
 	return postDetail, nil
 
 }
+
+// GetPostList 获取帖子列表
+func GetPostList() ([]*models.APiPostDetail, error) {
+	// 查询帖子列表
+	postList, err := mysql.GetPostList()
+	if err != nil {
+		zap.L().Error("getPostList error", zap.Error(err))
+		return nil, err
+	}
+
+	data := make([]*models.APiPostDetail, 0, len(postList))
+	// 根据作者id查询作者信息
+	for _, post := range postList {
+		user, err := mysql.GetUserById(post.AuthorID)
+		if err != nil {
+			zap.L().Error("getUserById error", zap.Error(err))
+			return nil, err
+		}
+		// 根据社区id查询社区信息
+		community, err := mysql.GetCommunityById(post.CommunityID)
+		if err != nil {
+			zap.L().Error("getCommunityById error", zap.Error(err))
+			return nil, err
+		}
+		// 组合数据接口
+		postDetail := &models.APiPostDetail{
+			AuthorName:      user.Username,
+			Post:            post,
+			CommunityDetail: community,
+		}
+		data = append(data, postDetail)
+	}
+	return data, nil
+}

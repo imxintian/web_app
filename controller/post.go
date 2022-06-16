@@ -59,3 +59,15 @@ func GetPostDetailHandler(c *gin.Context) {
 	}
 	ResponseSuccess(c, data)
 }
+
+// GetPostListHandler 获取帖子列表
+func GetPostListHandler(c *gin.Context) {
+
+	// 查询post列表
+	data, err := logic.GetPostList()
+	if err != nil {
+		zap.L().Error("getPostList error", zap.Error(err))
+		ResponseError(c, CodeServerBusy)
+	}
+	ResponseSuccess(c, data)
+}

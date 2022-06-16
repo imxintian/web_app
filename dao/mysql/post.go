@@ -36,3 +36,27 @@ func GetPostById(id int64) (*models.Post, error) {
 
 	return p, nil
 }
+
+// GetPostList 查询帖子列表
+func GetPostList() ([]*models.Post, error) {
+	sqlStr := "select post_id, title, content, author_id, community_id," +
+		"`status`, create_time from post   limit ?, ?"
+	rows, err := db.Query(sqlStr, 0, 2)
+	if err != nil {
+		return nil, err
+	}
+
+	defer rows.Close()
+
+	var posts []*models.Post
+	for rows.Next() {
+		p := &models.Post{}
+		err := rows.Scan(&p.ID, &p.Title, &p.Content, &p.AuthorID, &p.CommunityID, &p.Status, &p.CreateTime)
+		if err != nil {
+			return nil, err
+		}
+		posts = append(posts, p)
+
+	}
+	return posts, nil
+}
