@@ -89,3 +89,44 @@ func GetPostList(page, pageSize int) ([]*models.APiPostDetail, error) {
 	}
 	return data, nil
 }
+
+func GetPostList2(p *models.ParamPostList) ([]*models.APiPostDetail, error) {
+	// 去redis查询id列表
+	ids, err := redis.GetPostIDsInOrder(p)
+	if err != nil {
+		zap.L().Error("getPostIDsInOrder error", zap.Error(err))
+		return nil, nil
+	}
+	if len(ids) == 0 {
+		zap.L().Warn("redis getPostIDsInOrder(p) return 0 data  ")
+		return nil, nil
+	}
+	// 根据id去mysql查询帖子详情,根据查询出的顺序展示
+	postList, err := mysql.GetPostListByIDs(ids)
+	if err != nil {
+		zap.L().Error("getPostListByIDs error", zap.Error(err))
+	}
+	data := make([]*models.APiPostDetail, 0, len(postList))
+
+	for _, post := range postList {
+		user, err := mysql.GetUserById(post.AuthorID)
+		if err != nil {
+			zap.L().Error("getUserById error", zap.Error(err))
+			return nil, err
+		}
+		// 根据社区id查询社区信息
+		community, err := mysql.GetCommunityById(post.CommunityID)
+		if err != nil {
+			zap.L().Error("getCommunityById error", zap.Error(err))
+			return nil, err
+		}
+		// 组合数据接口
+		postDetail := &models.APiPostDetail{
+			AuthorName:      user.Username,
+			Post:            post,
+			CommunityDetail: community,
+		}
+		data = append(data, postDetail)
+	}
+	return data, nil
+}
