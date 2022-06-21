@@ -106,9 +106,21 @@ func GetPostList2(p *models.ParamPostList) ([]*models.APiPostDetail, error) {
 	if err != nil {
 		zap.L().Error("getPostListByIDs error", zap.Error(err))
 	}
+	if len(postList) == 0 {
+		zap.L().Warn("mysql getPostListByIDs(ids) return 0 data  ")
+		return nil, nil
+	}
+	// 提前查询好每篇帖子的投票数
+	postVoteList, err := redis.GetPostVoteList(ids)
+	if err != nil {
+		zap.L().Error("getPostVoteList error", zap.Error(err))
+
+	}
+	// 根据作者id查询作者信息
+
 	data := make([]*models.APiPostDetail, 0, len(postList))
 
-	for _, post := range postList {
+	for idx, post := range postList {
 		user, err := mysql.GetUserById(post.AuthorID)
 		if err != nil {
 			zap.L().Error("getUserById error", zap.Error(err))
@@ -123,6 +135,7 @@ func GetPostList2(p *models.ParamPostList) ([]*models.APiPostDetail, error) {
 		// 组合数据接口
 		postDetail := &models.APiPostDetail{
 			AuthorName:      user.Username,
+			VoteNum:         postVoteList[idx],
 			Post:            post,
 			CommunityDetail: community,
 		}

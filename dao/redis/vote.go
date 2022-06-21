@@ -33,6 +33,7 @@ const (
 
 var (
 	ErrVoteTimeExpired = errors.New("post vote expired")
+	ErrVoteRepeated    = errors.New("duplicate voting is not allowed")
 )
 
 func CreatePostVote(postID int64) error {
@@ -65,6 +66,10 @@ func VoteForPost(userID int64, postID string, value float64) error {
 
 	// 先查询用户当前的投票记录
 	ov := rdb.ZScore(getRedisKey(KeyPostVoteZSetPrefix+postID), strconv.Itoa(int(userID))).Val()
+	// 如果用户这一次投票与上一次投票相同，则不允许重复投票
+	if value == ov {
+		return ErrVoteRepeated
+	}
 	var op float64
 	if value > ov {
 		op = 1
