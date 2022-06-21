@@ -29,3 +29,8 @@ type ParamPostList struct {
 	PageSize int64  `json:"page_size" form:"page_size"`
 	Order    string `json:"order" form:"order"`
 }
+
+type ParamCommunityPostList struct {
+	ParamPostList
+	CommunityId int64 `json:"community_id" form:"community_id"`
+}

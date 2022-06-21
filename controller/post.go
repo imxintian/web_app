@@ -99,3 +99,33 @@ func GetPostList2Handler(c *gin.Context) {
 	}
 	ResponseSuccess(c, data)
 }
+
+// 根据社区id获取帖子列表
+
+func GetCommunityPostListHandler(c *gin.Context) {
+	// 获取分页参数
+	p := &models.ParamCommunityPostList{
+		ParamPostList: models.ParamPostList{
+			Page:     1,
+			PageSize: 10,
+			Order:    models.OrderTime,
+		},
+	}
+
+	if err := c.ShouldBindJSON(p); err != nil {
+		zap.L().Debug("ShouldBindJSON with invalid param", zap.Any("err", err))
+		zap.L().Error("ParamCommunityPostList with invalid param", zap.Error(err))
+		// 判断err是否是validator.ValidationErrors类型
+		ResponseError(c, CodeInvalidParam)
+		return
+
+	}
+	// 查询post列表
+	data, err := logic.GetCommunityList2(p)
+	if err != nil {
+		zap.L().Error("getPostList2 error", zap.Error(err))
+		ResponseError(c, CodeServerBusy)
+		return
+	}
+	ResponseSuccess(c, data)
+}

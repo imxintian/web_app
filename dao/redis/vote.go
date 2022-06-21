@@ -36,7 +36,7 @@ var (
 	ErrVoteRepeated    = errors.New("duplicate voting is not allowed")
 )
 
-func CreatePostVote(postID int64) error {
+func CreatePostVote(postID, communityID int64) error {
 	pipeline := rdb.TxPipeline()
 
 	// 1. 帖子的时间
@@ -49,6 +49,8 @@ func CreatePostVote(postID int64) error {
 		Score:  float64(time.Now().Unix()),
 		Member: postID,
 	})
+	cKey := getRedisKey(KeyCommunitySetPF + strconv.Itoa(int(communityID)))
+	pipeline.SAdd(cKey, postID)
 	_, err := pipeline.Exec()
 
 	return err
