@@ -2,6 +2,7 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
+	"time"
 	"web_app/controller"
 	"web_app/logger"
 	"web_app/middlewares"
@@ -18,7 +19,7 @@ func SetUp(mode string) *gin.Engine {
 	// 注册业务路由
 	v1.POST("/signup", controller.SignUpHandler)
 	v1.POST("/login", controller.LoginHandler)
-	v1.Use(middlewares.JWTAuthMiddleware())
+	v1.Use(middlewares.JWTAuthMiddleware(), middlewares.RateLimitMiddleware(2*time.Second, 1)) //api 限流
 	{
 		v1.GET("/community", controller.CommunityHandler)
 		v1.GET("/community/:id", controller.CommunityDetailHandler)

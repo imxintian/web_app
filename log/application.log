@@ -874,3 +874,13 @@
 {"level":"INFO","time":"2022-06-22T14:10:54.479+0800","caller":"web_app/main.go:38","msg":"init logger success"}
 {"level":"WARN","time":"2022-06-22T14:10:59.483+0800","caller":"logic/post.go:156","msg":"redis getPostIDsInOrder(p) return 0 data  "}
 {"level":"INFO","time":"2022-06-22T14:10:59.483+0800","caller":"logger/logger.go:80","msg":"/api/v1/post2/","status":200,"method":"GET","path":"/api/v1/post2/","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.0","errors":"","cost":0.003301627}
+{"level":"INFO","time":"2022-06-22T17:35:21.868+0800","caller":"web_app/main.go:38","msg":"init logger success"}
+{"level":"WARN","time":"2022-06-22T17:35:35.882+0800","caller":"logic/post.go:156","msg":"redis getPostIDsInOrder(p) return 0 data  "}
+{"level":"INFO","time":"2022-06-22T17:35:35.882+0800","caller":"logger/logger.go:80","msg":"/api/v1/post2/","status":200,"method":"GET","path":"/api/v1/post2/","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.0","errors":"","cost":0.003108726}
+{"level":"INFO","time":"2022-06-22T17:35:41.738+0800","caller":"logger/logger.go:80","msg":"/api/v1/post/986215689087881216","status":200,"method":"GET","path":"/api/v1/post/986215689087881216","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.0","errors":"","cost":0.000068349}
+{"level":"INFO","time":"2022-06-22T17:35:43.800+0800","caller":"logger/logger.go:80","msg":"/api/v1/post/986215689087881216","status":200,"method":"GET","path":"/api/v1/post/986215689087881216","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.0","errors":"","cost":0.000081238}
+{"level":"INFO","time":"2022-06-22T17:35:45.274+0800","caller":"logger/logger.go:80","msg":"/api/v1/post/986215689087881216","status":200,"method":"GET","path":"/api/v1/post/986215689087881216","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.0","errors":"","cost":0.000042642}
+{"level":"INFO","time":"2022-06-22T17:35:46.137+0800","caller":"logger/logger.go:80","msg":"/api/v1/post/986215689087881216","status":200,"method":"GET","path":"/api/v1/post/986215689087881216","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.0","errors":"","cost":0.000036336}
+{"level":"INFO","time":"2022-06-22T17:35:47.225+0800","caller":"logger/logger.go:80","msg":"/api/v1/post/986215689087881216","status":200,"method":"GET","path":"/api/v1/post/986215689087881216","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.0","errors":"","cost":0.122845649}
+{"level":"INFO","time":"2022-06-22T17:37:24.009+0800","caller":"web_app/main.go:87","msg":"Shutdown Server ..."}
+{"level":"INFO","time":"2022-06-22T17:37:24.011+0800","caller":"web_app/main.go:96","msg":"Server exiting"}
