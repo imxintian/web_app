@@ -45,7 +45,7 @@ func GetPostVoteList(ids []string) ([]int64, error) {
 
 // GetPostVoteList  按社区id获取帖子id查询每篇帖子的赞同和反对数
 
-func GetCommunityPostIDsInOrder(p *models.ParamCommunityPostList) ([]string, error) {
+func GetCommunityPostIDsInOrder(p *models.ParamPostList) ([]string, error) {
 	orderKey := getRedisKey(KeyPostTimeZSet)
 	if p.Order == models.OrderScore {
 		orderKey = getRedisKey(KeyPostScoreZSet)

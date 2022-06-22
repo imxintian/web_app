@@ -143,7 +143,8 @@ func GetPostList2(p *models.ParamPostList) ([]*models.APiPostDetail, error) {
 	}
 	return data, nil
 }
-func GetCommunityList2(p *models.ParamCommunityPostList) ([]*models.APiPostDetail, error) {
+
+func GetCommunityPostList(p *models.ParamPostList) ([]*models.APiPostDetail, error) {
 
 	// 去redis查询id列表
 	ids, err := redis.GetCommunityPostIDsInOrder(p)
@@ -196,4 +197,20 @@ func GetCommunityList2(p *models.ParamCommunityPostList) ([]*models.APiPostDetai
 		data = append(data, postDetail)
 	}
 	return data, nil
+}
+
+// GetPostListNew 查询二合一
+func GetPostListNew(p *models.ParamPostList) (data []*models.APiPostDetail, err error) {
+	if p.CommunityId == 0 {
+		data, err = GetPostList2(p)
+	} else {
+		data, err = GetCommunityPostList(p)
+	}
+	if err != nil {
+		zap.L().Error("GetPostListNew error", zap.Error(err))
+		return nil, err
+
+	}
+	return data, nil
+
 }
