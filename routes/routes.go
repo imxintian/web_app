@@ -20,15 +20,14 @@ func SetUp(mode string) *gin.Engine {
 	v1.POST("/signup", controller.SignUpHandler)
 	v1.POST("/login", controller.LoginHandler)
 	v1.Use(middlewares.JWTAuthMiddleware(), middlewares.RateLimitMiddleware(2*time.Second, 1)) //api 限流
+	v1.GET("/community", controller.CommunityHandler)
+	v1.GET("/community/:id", controller.CommunityDetailHandler)
+	v1.GET("/post/:id", controller.GetPostDetailHandler)
+	v1.GET("/post/", controller.GetPostListHandler)
+	v1.GET("post2/", controller.GetPostList2Handler)
 	{
-		v1.GET("/community", controller.CommunityHandler)
-		v1.GET("/community/:id", controller.CommunityDetailHandler)
 		v1.POST("/post", controller.CreatePostHandler)
-		v1.GET("/post/:id", controller.GetPostDetailHandler)
-		v1.GET("/post/", controller.GetPostListHandler)
-		v1.GET("post2/", controller.GetPostList2Handler)
 		v1.POST("/vote", controller.PostVoteHandler)
-
 	}
 
 	return r

@@ -884,3 +884,4 @@
 {"level":"INFO","time":"2022-06-22T17:35:47.225+0800","caller":"logger/logger.go:80","msg":"/api/v1/post/986215689087881216","status":200,"method":"GET","path":"/api/v1/post/986215689087881216","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.0","errors":"","cost":0.122845649}
 {"level":"INFO","time":"2022-06-22T17:37:24.009+0800","caller":"web_app/main.go:87","msg":"Shutdown Server ..."}
 {"level":"INFO","time":"2022-06-22T17:37:24.011+0800","caller":"web_app/main.go:96","msg":"Server exiting"}
+{"level":"INFO","time":"2022-06-23T15:33:20.680+0800","caller":"web_app/main.go:38","msg":"init logger success"}
